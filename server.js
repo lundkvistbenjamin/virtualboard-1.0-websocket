@@ -38,17 +38,28 @@ wss.on('connection', (ws, req) => {
         clients[boardId].add(ws);
         console.log(`Client connected with boardId: ${boardId}. Client count for this board: ${clients[boardId].size}`);
 
+        // Handle incoming messages from clients
         ws.on('message', (message) => {
             const data = JSON.parse(message);
 
-            // Broadcast the message to other clients if notesContent is present
+            // Ensure the message contains the required fields
+            if (!data.type || !data.note) {
+                ws.send(JSON.stringify({
+                    status: 1,
+                    msg: 'ERROR: Missing type or note in the message.'
+                }));
+                return;
+            }
+
+            // Broadcast the message to other clients
             if (clients[boardId]) {
                 clients[boardId].forEach(client => {
-                    // Don't send back to the sender
+                    // Don't send the message back to the sender
                     if (client !== ws) {
                         client.send(JSON.stringify({
                             status: 0,
-                            notesContent: data.notesContent // Send the received notes content
+                            type: data.type,  // Pass the type (e.g., "create", "update", etc.)
+                            note: data.note   // Pass the entire note object
                         }));
                     }
                 });
@@ -57,7 +68,7 @@ wss.on('connection', (ws, req) => {
 
         ws.on('close', () => {
             console.log('Client disconnected');
-            clients[boardId].delete(ws); // Remove the client
+            clients[boardId].delete(ws); // Remove the client from the board's clients set
         });
 
     } catch (err) {
