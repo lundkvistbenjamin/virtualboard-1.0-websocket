@@ -1,17 +1,17 @@
-# WebSocket-demo
+# VirtualBoard
+An interactive note-taking board with frontend, backend, websocket, and Electron app.
 
-A silly (but working) WebSocket demo by Fredrik Welander.
+## Features
+- Collaborative note-taking
+- Real-time updates via websockets
+- Fully functional frontend and backend
 
-## Start server:
-- clone the repo
-- create `ws-node/.env` (see .env-example)
-- `cd ws-node`
-- `npm i`
-- `npm run dev`
+## Installation
+Clone the repository and follow the installation instructions for the respective part.
 
-## Start client:
-- Open `ws-frontend`in VSCode
-- Run with Live Server extension
-- Use the hard coded example token (`my-secret-token`) or set your own token in the Developer Console:    
-    `localStorage.setItem('ws_token', 'my-very-secret-token')`
-
+### Websocket:
+```bash
+git clone https://github.com/lundkvistbenjamin/virtualboard-1.0-websocket.git
+cd virtualboard-1.0-websocket
+npm install
+npm start
