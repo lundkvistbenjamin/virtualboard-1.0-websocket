@@ -11,7 +11,7 @@ Clone the repository and follow the installation instructions for the respective
 
 ### Websocket:
 ```bash
-git clone https://github.com/lundkvistbenjamin/virtualboard-1.0-websocket.git
+git clone https://github.com/lundkvistbenjamin/virtualboard-websocket.git
 cd virtualboard-1.0-websocket
 npm install
 npm start
