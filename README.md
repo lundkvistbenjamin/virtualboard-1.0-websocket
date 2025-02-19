@@ -15,3 +15,7 @@ git clone https://github.com/lundkvistbenjamin/virtualboard-websocket.git
 cd virtualboard-1.0-websocket
 npm install
 npm start
+```
+
+## **License**  
+MIT License  
